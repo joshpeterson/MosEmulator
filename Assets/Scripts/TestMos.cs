@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using Mos6510;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Analytics;
+using UnityEngine.CrashLog;
 
 public class TestMos : MonoBehaviour {
 
@@ -18,6 +20,11 @@ public class TestMos : MonoBehaviour {
 	public Text instructionsText;
 	public Text errorText;
 	public Button executeButton;
+
+	void Awake()
+	{
+		CrashReporting.Init("819aa390-cb46-44c1-931e-10a792a176c0", "Built with IL2CPP");
+	}
 
 	// Use this for initialization
 	void Start ()
@@ -41,7 +48,11 @@ public class TestMos : MonoBehaviour {
 	public void OnExecute()
 	{
 		var assemblyCode = assemblyInstructionInputField.text;
-		if (repl.TryRead(assemblyCode))
+		if (assemblyCode == "crash")
+		{
+			throw new InvalidOperationException("Test crash reporting.");
+		}
+		else if (repl.TryRead(assemblyCode))
 		{
 			RecordInstructionViaAnalytics(assemblyCode);
             instructionsText.text += string.Format("\n {0}: {1}", instructionCounter, assemblyCode);
