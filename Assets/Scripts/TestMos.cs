@@ -5,7 +5,9 @@ using Mos6510;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Analytics;
+#if UNITY_IOS
 using UnityEngine.CrashLog;
+#endif
 
 public class TestMos : MonoBehaviour {
 
@@ -21,10 +23,12 @@ public class TestMos : MonoBehaviour {
 	public Text errorText;
 	public Button executeButton;
 
+	#if UNITY_IOS
 	void Awake()
 	{
 		CrashReporting.Init("819aa390-cb46-44c1-931e-10a792a176c0", "Built with IL2CPP");
 	}
+	#endif
 
 	// Use this for initialization
 	void Start ()
