@@ -1,0 +1,3 @@
+[submodule "Assets/mos"]
+	path = Assets/mos
+	url = https://github.com/joshpeterson/mos.git
