@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using Mos6510;
 using UnityEngine.UI;
+using UnityEngine.Analytics;
 
 public class TestMos : MonoBehaviour {
 
@@ -41,7 +43,8 @@ public class TestMos : MonoBehaviour {
 		var assemblyCode = assemblyInstructionInputField.text;
 		if (repl.TryRead(assemblyCode))
 		{
-			instructionsText.text += string.Format("\n {0}: {1}", instructionCounter, assemblyCode);
+			RecordInstructionViaAnalytics(assemblyCode);
+            instructionsText.text += string.Format("\n {0}: {1}", instructionCounter, assemblyCode);
 			instructionCounter++;
 			repl.Execute();
 			registerOutputText.text = repl.PrintRegisters().TrimStart();
@@ -61,4 +64,14 @@ public class TestMos : MonoBehaviour {
 			OnExecute();
 		}
 	}
+
+	private void RecordInstructionViaAnalytics(string assemblyCode)
+	{
+		Analytics.CustomEvent("InstructionExecuted", new Dictionary<string, object>
+		{
+			{ "assemblyCode", assemblyCode },
+		});
+	}
+
+
 }

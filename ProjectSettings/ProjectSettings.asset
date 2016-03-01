@@ -49,7 +49,7 @@ PlayerSettings:
   forceSingleInstance: 0
   resizableWindow: 0
   useMacAppStoreValidation: 0
-  gpuSkinning: 0
+  gpuSkinning: 1
   xboxPIXTextureCapture: 0
   xboxEnableAvatar: 0
   xboxEnableKinect: 0
@@ -89,7 +89,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleIdentifier: com.Company.ProductName
+  bundleIdentifier: com.Unity.JoshTest
   bundleVersion: 1.0
   preloadedAssets: []
   metroEnableIndependentInputSource: 0
@@ -424,7 +424,7 @@ PlayerSettings:
   - WebGL::exceptionSupport
   - WebGL::memorySize
   - WebPlayer::ScriptingBackend
-  Android::ScriptingBackend: 0
+  Android::ScriptingBackend: 1
   Metro::ScriptingBackend: 2
   Standalone::ScriptingBackend: 0
   WebGL::ScriptingBackend: 1
